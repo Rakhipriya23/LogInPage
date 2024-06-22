@@ -62,28 +62,36 @@ class MainActivity : ComponentActivity() {
             LoginScreen()
         }
     }
-    @Composable
-    fun LoginScreen(){
-        //Surface(modifier = Modifier.fillMaxSize(),
-          // color = MaterialTheme.colorScheme.background)
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.White),
-            contentAlignment = Alignment.Center
-        )
+}
 
-        {
-            Column(modifier = Modifier
+
+@Composable
+fun LoginScreen() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally) {
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(modifier = Modifier.height(20.dp))
 
-
-                    Spacer(modifier = Modifier.height(20.dp))
+            Box(
+                modifier = Modifier
+                    .background(Color(0xFFE3F2FD), RoundedCornerShape(8.dp))
+                    .padding(16.dp)
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
                     Text(
                         text = "Jetpack Compose",
-                        fontSize = 24.sp,
+                        fontSize = 28.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFF1976D2),
                         textAlign = TextAlign.Center
@@ -97,13 +105,17 @@ class MainActivity : ComponentActivity() {
                     Spacer(modifier = Modifier.height(20.dp))
                     Text(
                         text = "Login",
-                        fontSize = 20.sp,
+                        fontSize = 29.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFF136c48)
+                        color = Color(0xFF136c48),
+                        modifier = Modifier.align(Alignment.Start)
                     )
                     Spacer(modifier = Modifier.height(10.dp))
+
                     var email by remember { mutableStateOf("") }
-                    BasicTextField(value = email, onValueChange = { email = it },
+                    BasicTextField(
+                        value = email,
+                        onValueChange = { email = it },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 8.dp)
@@ -121,20 +133,20 @@ class MainActivity : ComponentActivity() {
                                     .fillMaxSize()
                                     .padding(horizontal = 16.dp, vertical = 8.dp),
                                 contentAlignment = Alignment.CenterStart
-                            )
-                            {
+                            ) {
                                 if (email.isEmpty()) {
                                     Text(text = "Email ID or Mobile Number", color = Color.Gray)
                                 }
                                 innerTextField()
                             }
                         }
-
                     )
 
                     var password by remember { mutableStateOf("") }
                     var passwordVisible by remember { mutableStateOf(false) }
-                    BasicTextField(value = password, onValueChange = { password = it },
+                    BasicTextField(
+                        value = password,
+                        onValueChange = { password = it },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(vertical = 8.dp)
@@ -174,10 +186,12 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     )
+
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = "Forgot Passowrd?",
+                    Text(
+                        text = "Forgot Password?",
                         fontSize = 14.sp,
-                        color = Color(0xFF388E3c),
+                        color = Color(0xFF388E3C),
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable { /*Handle Forgot Password*/ }
@@ -186,30 +200,29 @@ class MainActivity : ComponentActivity() {
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Button(
-                        onClick = {/*Handle Login*/ },
-                        modifier = Modifier.align(Alignment.Start),
-
+                        onClick = { /*Handle Login*/ },
+                        modifier = Modifier.align(Alignment.Start)
+                        .width(150.dp)
+                        .height(50.dp),
                         colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1976D2))
                     ) {
-                        Text(text = "Login", color = Color.White)
+                        Text(text = "Login", color = Color.White, fontSize = 18.sp)
                     }
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                Row {
-                    Text(text = "Don't have an account?", fontSize = 14.sp, color = Color.Gray)
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text(
-                        text = "Register",
-                        fontSize = 14.sp,
-                        color = Color(0xFF1976D2),
-                        modifier = Modifier.clickable { /* Handle register */ }
-                    )
                 }
-
-
             }
 
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Row {
+                Text(text = "Don't have an account?", fontSize = 14.sp, color = Color.Gray)
+                Spacer(modifier = Modifier.width(4.dp))
+                Text(
+                    text = "Register",
+                    fontSize = 14.sp,
+                    color = Color(0xFF1976D2),
+                    modifier = Modifier.clickable { /* Handle register */ }
+                )
+            }
         }
     }
 }
